@@ -4,6 +4,7 @@ import javax.persistence.*;
 @Table(name="marks")
 public class MarkEntity {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Id
 long id;
 	int mark;
 	@ManyToOne
