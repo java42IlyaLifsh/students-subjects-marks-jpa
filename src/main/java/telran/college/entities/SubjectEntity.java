@@ -5,7 +5,7 @@ import javax.persistence.*;
 public class SubjectEntity {
 	@Id
 long id;
-	@Column(name = "subject_name")
+	@Column(name = "subject_name", unique = true)
 	String subjectName;
 	public SubjectEntity() {
 	}

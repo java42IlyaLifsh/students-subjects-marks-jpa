@@ -8,6 +8,8 @@ public interface CollegeService {
 void addStudent(Student student);
 void addSubject(Subject subject);
 void addMark(Mark mark);
+List<String> getStudentsSubjectMark(String subjectName, int mark); //get student names those who have at least one mark 
+// greater or equal the given one
 List<Integer> getStudentMarksSubject(String name, String subjectName);
 List<Student> goodCollegeStudents();//students with avg mark greater than total avg mark of the college
 List<Student> bestStudents(int nStudents); //the given number of the best students

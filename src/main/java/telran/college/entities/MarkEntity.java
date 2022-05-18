@@ -1,15 +1,17 @@
 package telran.college.entities;
 import javax.persistence.*;
 @Entity
-@Table(name="marks")
+@Table(name="marks", indexes= {@Index(columnList = "student_id, subject_id")})
 public class MarkEntity {
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Id
 long id;
 	int mark;
 	@ManyToOne
+	@JoinColumn(name = "student_id")
 	StudentEntity student;
 	@ManyToOne
+	@JoinColumn(name = "subject_id")
 	SubjectEntity subject;
 	public MarkEntity() {
 	}

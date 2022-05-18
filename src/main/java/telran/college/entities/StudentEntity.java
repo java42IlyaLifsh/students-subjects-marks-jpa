@@ -7,6 +7,7 @@ import javax.persistence.*;
 public class StudentEntity {
 	@Id
 	long id;
+	@Column(unique = true)
 	String name;
 	public StudentEntity(long id, String name) {
 		this.id = id;

@@ -65,38 +65,45 @@ public class CollegeServiceImpl implements CollegeService {
 
 	@Override
 	public List<Integer> getStudentMarksSubject(String name, String subjectName) {
-		// TODO Auto-generated method stub
-		return null;
+		List<MarkEntity> markEntities =
+				marksRepository.findByStudentNameAndSubjectSubjectName(name, subjectName);
+		return markEntities.stream().map(MarkEntity::getMark).toList();
 	}
 
 	@Override
 	public List<Student> goodCollegeStudents() {
-		// TODO Auto-generated method stub
+		// TODO Auto-generated method stub not now
 		return null;
 	}
 
 	@Override
 	public List<Student> bestStudents(int nStudents) {
-		// TODO Auto-generated method stub
+		// TODO Auto-generated method stub not now
 		return null;
 	}
 
 	@Override
 	public List<Student> bestStudentsSubject(int nStudents, String subjectName) {
-		// TODO Auto-generated method stub
+		// TODO Auto-generated method stub not now
 		return null;
 	}
 
 	@Override
 	public Subject subjectGreatestAvgMark() {
-		// TODO Auto-generated method stub
+		// TODO Auto-generated method stub not now
 		return null;
 	}
 
 	@Override
 	public void deleteStudentsAvgMarkLess(int avgMark) {
-		// TODO Auto-generated method stub
+		// TODO Auto-generated method stub not now
 
+	}
+
+	@Override
+	public List<String> getStudentsSubjectMark(String subjectName, int mark) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
