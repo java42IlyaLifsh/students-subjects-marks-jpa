@@ -24,6 +24,9 @@ class StudentsSubjectsMarksJpaApplicationTests {
 		collegeService.addMark(new Mark(1, 1, 70));
 		collegeService.addMark(new Mark(1, 1, 80));
 		collegeService.addMark(new Mark(1, 1, 90));
+		collegeService.addMark(new Mark(2, 1, 70));
+		collegeService.addMark(new Mark(2, 1, 80));
+		collegeService.addMark(new Mark(3, 1, 60));
 		//TODO add additional marks
 	}
 	@Test
@@ -34,8 +37,9 @@ class StudentsSubjectsMarksJpaApplicationTests {
 	}
 	@Test
 	void getStudentsSubjectMarks() {
-		//test of the method getStudentsSubjectMark
-		//TODO 
+		List<String> expected = Arrays.asList("student1", "student2");
+		List<String> actual = collegeService.getStudentsSubjectMark("subject1", 70);
+		assertIterableEquals(expected, actual);
 	}
 
 }

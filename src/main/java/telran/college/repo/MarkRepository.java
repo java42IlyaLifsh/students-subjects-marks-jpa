@@ -8,4 +8,6 @@ import telran.college.entities.MarkEntity;
 
 public interface MarkRepository extends JpaRepository<MarkEntity, Long> {
 List<MarkEntity> findByStudentNameAndSubjectSubjectName(String name, String subjectName);
+
+List<MarkEntity> findBySubjectSubjectNameAndMarkGreaterThanEqual(String subjectName, int mark);
 }

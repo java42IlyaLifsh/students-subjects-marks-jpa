@@ -102,8 +102,9 @@ public class CollegeServiceImpl implements CollegeService {
 
 	@Override
 	public List<String> getStudentsSubjectMark(String subjectName, int mark) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return marksRepository.findBySubjectSubjectNameAndMarkGreaterThanEqual(subjectName, mark)
+				.stream().map(me -> me.getStudent().getName()).distinct().toList();
 	}
 
 }
