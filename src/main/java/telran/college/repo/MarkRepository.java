@@ -28,5 +28,7 @@ List<StudentNameProj> findDistinctBySubjectSubjectNameAndMarkGreaterThanEqual(St
  		+ "group by id, name having avg(mark) > :avgMark")
 List<IdNameProj> findSubjectsAvgMarkGreater(double avgMark);
  /***************************************************************************/
-
+ @Query(value="select s.id as id, s.name as name from marks m join students s on m.student_id=s.id "
+ 		+ "group by id, name order by avg(m.mark) desc limit :nStudents", nativeQuery = true)
+List<IdNameProj> findBestStudents(long nStudents);
 }

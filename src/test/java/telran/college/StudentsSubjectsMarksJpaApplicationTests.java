@@ -53,7 +53,7 @@ class StudentsSubjectsMarksJpaApplicationTests {
 		assertIterableEquals(expected, actual);
 	}
 	@Test
-	@Order(5)
+	@Order(10)
 	void deleteStudents() {
 		collegeService.deleteStudentsAvgMarkLess(70);
 		List<String> actual = collegeService.getStudentsSubjectMark("subject1", 30);
@@ -69,13 +69,19 @@ class StudentsSubjectsMarksJpaApplicationTests {
 		
 	}
 	@Test
-	@Order(7)
+	@Order(11)
 	void deleteStudentsCountLess() {
 		List<Student> expected = Arrays.asList(new Student(5, "student5"));
 		List<Student> actual = collegeService.deleteStudentsMarksCountLess(2);
 		System.out.println(actual);
 		assertIterableEquals(expected, actual);
 	}
+	@Test
+	@Order(5)
+	void bestStudents() {
+		System.out.println(collegeService.bestStudents(1));
+	}
+	
 	
 
 }

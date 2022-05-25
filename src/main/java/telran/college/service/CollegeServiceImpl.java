@@ -82,7 +82,9 @@ public class CollegeServiceImpl implements CollegeService {
 	@Override
 	public List<Student> bestStudents(int nStudents) {
 		
-		return null;
+		return marksRepository.findBestStudents(nStudents)
+				.stream().map(in -> new Student(in.getId(), in.getName()))
+				.toList();
 	}
 
 	@Override
