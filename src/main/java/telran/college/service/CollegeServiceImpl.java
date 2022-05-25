@@ -81,7 +81,7 @@ public class CollegeServiceImpl implements CollegeService {
 
 	@Override
 	public List<Student> bestStudents(int nStudents) {
-		// TODO Auto-generated method stub not now
+		
 		return null;
 	}
 
@@ -100,8 +100,7 @@ public class CollegeServiceImpl implements CollegeService {
 	@Override
 	@Transactional
 	public void deleteStudentsAvgMarkLess(int avgMark) {
-		List<StudentEntity> studentsForDelete = studentsRepository.getStudentsAvgMarkLess((double)avgMark);
-		studentsForDelete.forEach(studentsRepository::delete);
+		studentsRepository.deleteStudentsAvgMarkLess((double)avgMark);
 
 	}
 
@@ -113,15 +112,20 @@ public class CollegeServiceImpl implements CollegeService {
 	}
 
 	@Override
+	@Transactional
 	public List<Student> deleteStudentsMarksCountLess(int count) {
-		// TODO Auto-generated method stub
-		return null;
+		List<StudentEntity> studentsForDelete = studentsRepository.getStudentsCountLess(count);
+		studentsForDelete.forEach(studentsRepository::delete);
+		return studentsForDelete.stream().map(se -> new Student(se.getId(), se.getName()))
+				.toList();
 	}
 
 	@Override
 	public List<Subject> subjectsAvgMarkGreater(int avgMark) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return marksRepository.findSubjectsAvgMarkGreater(avgMark).
+				stream().map(in -> new Subject(in.getId(), in.getName()))
+				.toList();
 	}
 
 }

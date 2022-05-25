@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
+import telran.college.dto.Subject;
 import telran.college.entities.MarkEntity;
 import telran.college.entities.StudentEntity;
 import telran.college.entities.projection.*;
@@ -19,8 +20,13 @@ List<MarkProj> findByStudentNameAndSubjectSubjectName(String name, String subjec
 List<StudentNameProj> findDistinctBySubjectSubjectNameAndMarkGreaterThanEqual(String subjectName, int mark);
  /*************************************/
  @Query("select m.student.id as id, m.student.name as name from MarkEntity m "
- 		+ "group by m.student.id, m.student.name having avg(m.mark) >= "
+ 		+ "group by id, name having avg(m.mark) >= "
  		+ "(select avg(m1.mark) from MarkEntity m1)")
- List<StudentProj> findGoodStudents() ;
- 
+ List<IdNameProj> findGoodStudents() ;
+ /****************************************************************/
+ @Query("select m.subject.id as id, m.subject.subjectName as name from MarkEntity m "
+ 		+ "group by id, name having avg(mark) > :avgMark")
+List<IdNameProj> findSubjectsAvgMarkGreater(double avgMark);
+ /***************************************************************************/
+
 }

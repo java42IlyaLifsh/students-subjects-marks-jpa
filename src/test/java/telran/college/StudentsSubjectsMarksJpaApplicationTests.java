@@ -10,8 +10,7 @@ import org.junit.jupiter.api.TestMethodOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import telran.college.dto.Mark;
-import telran.college.dto.Student;
+import telran.college.dto.*;
 import telran.college.service.CollegeService;
 
 @SpringBootTest
@@ -28,6 +27,8 @@ class StudentsSubjectsMarksJpaApplicationTests {
 		collegeService.addMark(new Mark(2, 1, 70));
 		collegeService.addMark(new Mark(2, 1, 80));
 		collegeService.addMark(new Mark(3, 1, 60));
+		collegeService.addMark(new Mark(4, 2, 65));
+		collegeService.addMark(new Mark(5, 3, 70));
 		//TODO add additional marks
 	}
 	@Test
@@ -58,6 +59,22 @@ class StudentsSubjectsMarksJpaApplicationTests {
 		List<String> actual = collegeService.getStudentsSubjectMark("subject1", 30);
 		assertEquals(2, actual.size());
 		
+	}
+	@Test
+	@Order(6)
+	void getSubjectsAvgMarkGreater() {
+		List<Subject> expected = Arrays.asList(new Subject(1, "subject1"), new Subject(3, "subject3"));
+		List<Subject> actual = collegeService.subjectsAvgMarkGreater(65);
+		assertIterableEquals(expected, actual);
+		
+	}
+	@Test
+	@Order(7)
+	void deleteStudentsCountLess() {
+		List<Student> expected = Arrays.asList(new Student(5, "student5"));
+		List<Student> actual = collegeService.deleteStudentsMarksCountLess(2);
+		System.out.println(actual);
+		assertIterableEquals(expected, actual);
 	}
 	
 
