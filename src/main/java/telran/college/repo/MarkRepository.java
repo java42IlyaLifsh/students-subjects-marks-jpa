@@ -31,4 +31,10 @@ List<IdNameProj> findSubjectsAvgMarkGreater(double avgMark);
  @Query(value="select s.id as id, s.name as name from marks m join students s on m.student_id=s.id "
  		+ "group by id, name order by avg(m.mark) desc limit :nStudents", nativeQuery = true)
 List<IdNameProj> findBestStudents(long nStudents);
+ /******************************************************************************/
+ @Query("select distinct m.student.id as id, m.student.name as name from MarkEntity m"
+ 		+ " where m.subject.subjectName = :subject and "
+ 		+ "not exists (select mark from MarkEntity where m.student.id = student.id"
+ 		+ " and m.subject.id = subject.id and mark < :mark)")
+ List<IdNameProj> findStudentsAllMarksGreaterEqual(int mark, String subject);
 }
