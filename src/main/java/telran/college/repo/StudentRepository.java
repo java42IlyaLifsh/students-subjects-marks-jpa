@@ -1,4 +1,5 @@
 package telran.college.repo;
+//IlyaL HW-66
 
 import java.util.List;
 
@@ -6,6 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 
+import telran.college.dto.Student;
 import telran.college.entities.StudentEntity;
 
 public interface StudentRepository extends JpaRepository<StudentEntity, Long> {
@@ -15,6 +17,10 @@ public interface StudentRepository extends JpaRepository<StudentEntity, Long> {
 	void deleteStudentsAvgMarkLess(double avgMark);
 
 @Query("select s from StudentEntity s where s.id in"
-		+ " (select ms.id from MarkEntity m right join m.student ms group by ms.id having count(m.mark) < :countMin) ")
+		+ " (select ms.id from MarkEntity m right join m.student ms group by ms.id "
+		+ "having count(m.mark) < :countMin) ")
 	List<StudentEntity> getStudentsCountLess(long countMin);
+
+	
+	
 }

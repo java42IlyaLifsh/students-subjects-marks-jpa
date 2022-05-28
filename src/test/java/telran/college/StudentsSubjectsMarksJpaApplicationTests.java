@@ -1,4 +1,6 @@
 package telran.college;
+//IlyaL HW-66
+
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.*;
@@ -29,7 +31,7 @@ class StudentsSubjectsMarksJpaApplicationTests {
 		collegeService.addMark(new Mark(3, 1, 60));
 		collegeService.addMark(new Mark(4, 2, 65));
 		collegeService.addMark(new Mark(5, 3, 70));
-		//TODO add additional marks
+		
 	}
 	@Test
 	@Order(2)
@@ -68,6 +70,7 @@ class StudentsSubjectsMarksJpaApplicationTests {
 		assertIterableEquals(expected, actual);
 		
 	}
+	
 	@Test
 	@Order(11)
 	void deleteStudentsCountLess() {
@@ -91,6 +94,45 @@ class StudentsSubjectsMarksJpaApplicationTests {
 		assertIterableEquals(expected, actual);
 	}
 	
+	@Test
+	@Order(6)
+	void bestStudentsSubject() {
+		List<Student> expected = Arrays.asList(new Student(1, "student1"));
+		List<Student> actual = collegeService.bestStudentsSubject(1,"subject1");
+		assertIterableEquals(expected, actual);
+	}
 	
-
+	@Test
+	@Order(6)
+	void subjectGreatestAvgMark() {
+		Subject expected = new Subject(1, "subject1");
+		Subject actual = collegeService.subjectGreatestAvgMark();
+		assertEquals(expected, actual);
+	}
+//---------------------------------------------------------
+	//---------------------------------------------------------
+	//---------------НЕ РАБОТАЕТ-----------------------
+	//---------------------------------------------------------
+	//---------------------------------------------------------
+	//---------------------------------------------------------
+	
+/*	@Test
+	@Order(6)
+	void StudentsMaxMarksCount() {
+		List<Student> expected = Arrays.asList(new Student(1, "student1"));
+		List<Student> actual = collegeService.getStudentsMaxMarksCount();
+		assertIterableEquals(expected, actual);
+	}
+*/
+	
+	@Test
+	@Order(2)
+	void getSubjectsAvgMarkLess() {
+		List<Subject> expected = Arrays.asList(new Subject(2, "subject2"));
+		List<Subject> actual = collegeService.getSubjectsAvgMarkLess(66);
+ 		assertIterableEquals(expected, actual);
+		
+		
+	}
+	
 }

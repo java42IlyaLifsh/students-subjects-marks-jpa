@@ -1,4 +1,5 @@
 package telran.college.service;
+//IlyaL HW-66
 
 import java.util.List;
 
@@ -92,15 +93,12 @@ public class CollegeServiceImpl implements CollegeService {
 
 	@Override
 	public List<Student> bestStudentsSubject(int nStudents, String subjectName) {
-		// TODO 
-		return null;
+		 
+		return toStudentsFromProj(marksRepository.findBestStudentsSubject(nStudents, subjectName));
+	
 	}
 
-	@Override
-	public Subject subjectGreatestAvgMark() {
-		// TODO  
-		return null;
-	}
+	
 
 	@Override
 	@Transactional
@@ -132,6 +130,12 @@ public class CollegeServiceImpl implements CollegeService {
 				stream().map(in -> new Subject(in.getId(), in.getName()))
 				.toList();
 	}
+	@Override
+	public Subject subjectGreatestAvgMark() {
+		 
+		SubjectEntity sub1= subjectsRepository.SubjectGreatestAvgMark(); 
+		return ( new Subject(sub1.getId(), sub1.getSubjectName()));
+	}
 
 	@Override
 	public List<Student> getStudentsAllMarksSubject(int mark, String subject) {
@@ -141,14 +145,22 @@ public class CollegeServiceImpl implements CollegeService {
 
 	@Override
 	public List<Student> getStudentsMaxMarksCount() {
-		// TODO Auto-generated method stub
-		return null;
+		// **********************************************************************************
+		// **********************************************************************************
+		// **********************НЕ РАБОТАЕТ***********************************
+		// **********************************************************************************
+		// **********************************************************************************
+		// **********************************************************************************
+		
+		return toStudentsFromProj(marksRepository.findStudentsMaxMarksCount());
 	}
 
 	@Override
 	public List<Subject> getSubjectsAvgMarkLess(int avgMark) {
-		// TODO Auto-generated method stub
-		return null;
+		 
+		return subjectsRepository.getSubjectsAvgMarkLess((double)avgMark).
+				stream().map(in -> new Subject(in.getId(), in.getSubjectName()))
+				.toList();
 	}
 
 }
