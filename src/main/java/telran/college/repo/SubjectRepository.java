@@ -11,6 +11,10 @@ import telran.college.entities.StudentEntity;
 import telran.college.entities.SubjectEntity;
 
 public interface SubjectRepository extends JpaRepository<SubjectEntity, Long> {
+	/* V.R. It seems to me, that more effective way is
+	 *  to select marks and to join subjects. In this case it will be done
+	 *  in markRepository.
+	 */
 	
 	 @Query(value = "select * from subjects s join marks m on s.id=m.subject_id "
 		 		+ "group by m.id, subject_name order by avg(m.mark) "

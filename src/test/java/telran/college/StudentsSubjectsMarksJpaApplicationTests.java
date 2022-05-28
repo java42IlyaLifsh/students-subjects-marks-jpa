@@ -99,6 +99,7 @@ class StudentsSubjectsMarksJpaApplicationTests {
 	void bestStudentsSubject() {
 		List<Student> expected = Arrays.asList(new Student(1, "student1"));
 		List<Student> actual = collegeService.bestStudentsSubject(1,"subject1");
+		System.out.println("bestStudentsSubject:  "+actual);
 		assertIterableEquals(expected, actual);
 	}
 	
@@ -107,6 +108,7 @@ class StudentsSubjectsMarksJpaApplicationTests {
 	void subjectGreatestAvgMark() {
 		Subject expected = new Subject(1, "subject1");
 		Subject actual = collegeService.subjectGreatestAvgMark();
+		System.out.println("subjectGreatestAvgMark:  "+actual);
 		assertEquals(expected, actual);
 	}
 //---------------------------------------------------------

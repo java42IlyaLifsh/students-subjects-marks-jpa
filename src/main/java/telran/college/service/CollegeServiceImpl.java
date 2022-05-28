@@ -134,6 +134,10 @@ public class CollegeServiceImpl implements CollegeService {
 	public Subject subjectGreatestAvgMark() {
 		 
 		SubjectEntity sub1= subjectsRepository.SubjectGreatestAvgMark(); 
+		/* V.R.
+		 *  How it will work in case of empty marks? 
+		 *  It seems to me that NullPointerException will appear
+		 */
 		return ( new Subject(sub1.getId(), sub1.getSubjectName()));
 	}
 
@@ -157,7 +161,7 @@ public class CollegeServiceImpl implements CollegeService {
 
 	@Override
 	public List<Subject> getSubjectsAvgMarkLess(int avgMark) {
-		 
+		 // V.R. Looks good
 		return subjectsRepository.getSubjectsAvgMarkLess((double)avgMark).
 				stream().map(in -> new Subject(in.getId(), in.getSubjectName()))
 				.toList();
